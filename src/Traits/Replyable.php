@@ -330,7 +330,7 @@ trait Replyable
 		if ($threadId) {
 			$this->setHeader('In-Reply-To', $this->getMessageIdHeader());
 			$this->setHeader('References', $this->getHeader('References'));
-			$this->setHeader('Message-ID', $this->getMessageIdHeader());
+			$this->setHeader('Message-ID', trim($this->getMessageIdHeader(),'<>'));
 		}
 	}
 
@@ -359,7 +359,6 @@ trait Replyable
 		$headers = $this->symfonyEmail->getHeaders();
 
 		$headers->addTextHeader($header, $value);
-
 	}
 
 	private function setReplySubject()
@@ -405,11 +404,16 @@ trait Replyable
 		$this->symfonyEmail
 			->from($this->fromAddress())
 			->to($this->toAddress())
-			->cc($this->returnCopies($this->cc))
-			->bcc($this->returnCopies($this->bcc))
 			->subject($this->subject)
 			->html($this->message)
 			->priority($this->priority);
+
+		if (!empty($this->cc)) {
+			$this->symfonyEmail->cc($this->returnCopies($this->cc));
+		}
+		if (!empty($this->bcc)) {
+			$this->symfonyEmail->bcc($this->returnCopies($this->bcc));
+		}
 
 		foreach ($this->attachments as $file) {
 			$this->symfonyEmail->attachFromPath($file);
