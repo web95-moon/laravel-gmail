@@ -230,6 +230,13 @@ class GmailConnection extends Google_Client
 		return $service->users->getProfile('me');
 	}
 
+	public function getSendAsDetails()
+	{
+		$service = new Google_Service_Gmail($this);
+
+		return $service->users_settings_sendAs;
+	}
+
 	/**
 	 * Revokes user's permission and logs them out
 	 */

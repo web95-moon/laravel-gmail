@@ -329,8 +329,8 @@ trait Replyable
 		$threadId = $this->getThreadId();
 		if ($threadId) {
 			$this->setHeader('In-Reply-To', $this->getMessageIdHeader());
-			$this->setHeader('References', $this->getHeader('References'));
-			$this->setHeader('Message-ID', trim($this->getMessageIdHeader(),'<>'));
+			$this->setHeader('References', $this->getMessageIdHeader());
+			// $this->setHeader('Message-ID', trim($this->getMessageIdHeader(),'<>'));
 		}
 	}
 
