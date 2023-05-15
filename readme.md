@@ -1,4 +1,4 @@
-# Laravel Gmailss
+# Laravel Gmail
 
 [![Build Status](https://scrutinizer-ci.com/g/dacastro4/laravel-gmail/badges/build.png?b=master)](https://scrutinizer-ci.com/g/dacastro4/laravel-gmail/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dacastro4/laravel-gmail/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dacastro4/laravel-gmail/?branch=master)
