@@ -357,7 +357,6 @@ trait Replyable
 	public function setHeader($header, $value)
 	{
 		$headers = $this->symfonyEmail->getHeaders();
-
 		$headers->addTextHeader($header, $value);
 	}
 
