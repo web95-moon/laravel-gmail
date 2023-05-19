@@ -330,7 +330,9 @@ trait Replyable
 		if ($threadId) {
 			$this->setHeader('In-Reply-To', $this->getMessageIdHeader());
 			$this->setHeader('References', $this->getMessageIdHeader());
-			$this->setHeader('Message-ID', trim($this->getMessageIdHeader(),"<>"));
+			$replyTo = $this->getReplyTo();
+			$this->setStructuredHeader('Message-ID', $replyTo['email']);
+			$this->setHeader('Message-ID', $this->getMessageIdHeader());
 		}
 	}
 
@@ -344,6 +346,12 @@ trait Replyable
 			return $messageId;
 		}
 		return null;
+	}
+
+	public function setStructuredHeader($header,$value)
+	{
+		$headers = $this->symfonyEmail->getHeaders();
+		$headers->addIdHeader($header, $value);
 	}
 
 	public abstract function getThreadId();
