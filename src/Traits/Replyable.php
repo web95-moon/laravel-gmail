@@ -332,7 +332,6 @@ trait Replyable
 			$this->setHeader('References', $this->getMessageIdHeader());
 			$replyTo = $this->getReplyTo();
 			$this->setStructuredHeader('Message-ID', $replyTo['email']);
-			$this->setHeader('Message-ID', $this->getMessageIdHeader());
 		}
 	}
 
