@@ -23,7 +23,7 @@
         "illuminate/routing": "~5.8|^6.0|^7.0|^8.0|^9.0|^10.0",
         "illuminate/session": "~5.8|^6.0|^7.0|^8.0|^9.0|^10.0",
         "illuminate/support": "~5.8|^6.0|^7.0|^8.0|^9.0|^10.0",
-        "symfony/mime": "^5.4|^6.0",
+        "symfony/mime": "dev-bug-fix",
         "ext-json": "*"
     },
     "require-dev": {
@@ -57,12 +57,12 @@
         "sort-packages": true,
         "optimize-autoloader": true
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "repositories": [
         {
             "type": "vcs",
             "url": "https://github.com/web95-moon/mime"
         }
-    ]
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
