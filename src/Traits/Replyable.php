@@ -104,6 +104,8 @@ trait Replyable
 	 */
 	private $attachments = [];
 
+	private $inlineAttachments = [];
+
 	private $priority = 2;
 
 	public function __construct()
@@ -274,6 +276,20 @@ trait Replyable
 		return $this;
 	}
 
+	public function attachInlineImage(...$files)
+	{
+		foreach ($files as $file) {
+
+			if (!file_exists($file)) {
+				throw new FileNotFoundException($file);
+			}
+
+			array_push($this->inlineAttachments, $file);
+		}
+
+		return $this;
+	}
+
 	/**
 	 * The value is an integer where 1 is the highest priority and 5 is the lowest.
 	 *
@@ -416,6 +432,11 @@ trait Replyable
 
 		foreach ($this->attachments as $file) {
 			$this->symfonyEmail->attachFromPath($file);
+		}
+
+		foreach ($this->inlineAttachments as $key => $file) {
+			$filename = basename($file);
+			$this->symfonyEmail->embedFromPath($file,$filename);
 		}
 
 		$body->setRaw($this->base64_encode($this->symfonyEmail->toString()));
